@@ -10,3 +10,11 @@
     margin-top: 40px;
     width: 80%;
 }
+
+
+/*
+ * Styles for project-list on search page
+ */
+.project-links {
+    border-left: 1px solid #666;
+}
