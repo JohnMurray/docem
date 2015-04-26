@@ -36,4 +36,4 @@ Back to the where, in large organizations this can mean lots of little web-serve
 docs spread out everywhere. While this can mean a lot of things, it mostly means that
 your users will have a hard time remembering where to go for _your_ application's docs
 amongst all the others they are already using. This additional mental overhead can
-mean they'll just bug your team with more questions instead of referrignto your docs.
+mean they'll just bug your team with more questions instead of referring to your docs.
