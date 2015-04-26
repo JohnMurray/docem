@@ -1,5 +1,8 @@
 ![Doc'Em](https://raw.githubusercontent.com/JohnMurray/docem/master/public/images/logo_github.jpg)
 
+[![Build Status](https://travis-ci.org/JohnMurray/docem.svg?branch=master)](https://travis-ci.org/JohnMurray/docem)
+[![Codacy Badge](https://www.codacy.com/project/badge/2d43c7ea33004844b336d367b0d003cd)](https://www.codacy.com/app/me_11/docem)
+
 Doc'Em is a documentation hosting service focusing on static content-hosting. It
 handles per-project versioning and global search across all projects and versions.
 
