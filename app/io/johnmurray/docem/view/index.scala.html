@@ -1,7 +1,27 @@
-@(message: String)
+@import io.johnmurray.docem.model.Project
+@(projects: List[Project])
 
-@main("Welcome to Play") {
+@main("Doc'Em Home") {
 
-    @play20.welcome(message)
+    <!-- some search bar or something here -->
+    <div class="jumbotron text-center">
+        <h1>Welcome To Doc'Em!</h1>
+        <p>
+            Search the projects below to find what you are looking for and browse that project's documentation
+            for all available versions. For information on adding your own documentaiton, see the "Upload" tab
+            above.
+        </p>
+        <div class="form-group has-feedback search-container center-block">
+            <input type="text" name="search" class="form-control" placeholder="Search Projects Below" />
+            <i class="glyphicon glyphicon-search form-control-feedback"></i>
+        </div>
+    </div>
+
+    <!-- list of all the projects here -->
+    <div id="projects">
+        @for(p <- projects) {
+            <div class="project" id="@(p.name)">@p.name</div>
+        }
+    </div>
 
 }

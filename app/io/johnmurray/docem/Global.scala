@@ -15,5 +15,11 @@ object Global extends GlobalSettings {
   override def onStart(app: Application): Unit = {
     projectDirectory = app.configuration.getString("docem.project-directory").get
     allowUnVersionedProjects = app.configuration.getBoolean("docem.allow-unversioned-projects").get
+
+    // some simple setup for testing
+    import io.johnmurray.docem.index._
+    Cache.project += "test" -> model.Project("test")
+    Cache.project += "fireglass" -> model.Project("fireglass")
+
   }
 }

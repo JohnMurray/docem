@@ -11,7 +11,7 @@ object ProjectUtil {
 
   def buildFromMeta(metaFile: File): Project = {
     // todo: implement method
-    Project("name", Seq.empty /*versions*/, "basePath")
+    Project("name")
   }
 
 }
