@@ -1,4 +1,4 @@
-# Doc'Em
+![Doc'Em](https://raw.githubusercontent.com/JohnMurray/docem/master/public/images/logo_github.jpg)
 
 Doc'Em is a documentation hosting service focusing on static content-hosting. It
 handles per-project versioning and global search across all projects and versions.
