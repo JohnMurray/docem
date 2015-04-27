@@ -15,4 +15,10 @@ class IndexController extends Controller {
     Ok(view.html.index(index.Cache.project.values.toList))
   }
 
+  def projectPage(project: String) = Action {
+    index.Cache.versions.get(project).map({vs =>
+      Ok("found it")
+    }).getOrElse(NotFound(view.html.not_found()))
+  }
+
 }

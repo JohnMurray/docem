@@ -19,7 +19,7 @@
 
     <!-- list of all the projects here -->
     <div id="projects">
-        @for(p <- projects) {
+        @for(p: Project <- projects) {
             <div class="panel panel-default" id="@p.name">
                 <div class="panel-body">
                     <h4>@p.name</h4>
@@ -29,8 +29,8 @@
                     <div class="col-md-2 project-links">
                         <ul>
                             <li><a href="#">latest</a></li>
-                            <li><a href="#">latest-stable</a></li>
-                            <li><a href="#">all-versions</a></li>
+                            <li><a href="#">@p.latestStable</a></li>
+                            <li><a href="/all-versions/@p.shortName">all-versions</a></li>
                         </ul>
                     </div>
                 </div>

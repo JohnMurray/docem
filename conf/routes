@@ -3,13 +3,14 @@
 # ~~~~
 
 # Home page
-GET        /                       @io.johnmurray.docem.controller.IndexController.mainPage
+GET        /                        @io.johnmurray.docem.controller.IndexController.mainPage
+GET        /all-versions/:project   @io.johnmurray.docem.controller.IndexController.projectPage(project: String)
 
 # Search Results (Json Api)
-GET        /projects               @io.johnmurray.docem.controller.ProjectController.getAll
+GET        /projects                @io.johnmurray.docem.controller.ProjectController.getAll
 
 # Static Asset Page
-GET        /doc/*path              @io.johnmurray.docem.controller.DocServeController.serveStaticFile(path: String)
+GET        /doc/*path               @io.johnmurray.docem.controller.DocServeController.serveStaticFile(path: String)
 
 # Map static resources from the /public folder to the /assets URL path
-GET        /assets/*file           controllers.Assets.at(path="/public", file)
+GET        /assets/*file            controllers.Assets.at(path="/public", file)
