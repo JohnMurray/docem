@@ -54,4 +54,17 @@ object Global extends GlobalSettings {
       }
     })
   }
+
+  /**
+   * Override the main handler for when something goes horribly wrong that we didn't expect. However if we're
+   * in development mode then just dump out the error using the default mechanism.
+   */
+  override def onError(request: RequestHeader, ex: Throwable): Future[Result] = {
+    val mode = Play.maybeApplication.map(_.mode).getOrElse(Mode.Dev)
+    mode match {
+      case Mode.Prod => Future.successful(InternalServerError(view.html.error_500()))
+      case _ => super.onError(request, ex)
+    }
+  }
+
 }
