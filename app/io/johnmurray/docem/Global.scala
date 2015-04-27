@@ -5,6 +5,10 @@ import java.io.File
 import io.johnmurray.docem.model.ProjectVersion
 import org.joda.time.DateTime
 import play.api._
+import play.api.mvc.Results._
+import play.api.mvc.{Result, RequestHeader}
+
+import scala.concurrent.Future
 
 /**
  * Override some global hooks for the application
@@ -35,5 +39,19 @@ object Global extends GlobalSettings {
       "0.0.30" -> ProjectVersion("0.0.30", "Time Traveling Ninja", DateTime.now),
       "0.0.29" -> ProjectVersion("0.0.29", "Super Insedious", DateTime.now.minusDays(1)))
 
+  }
+
+  /**
+   * Override the main handler for missing routes to display a custom 404 page. However in development
+   * let's use the default mechanism.
+   */
+  override def onHandlerNotFound(request: RequestHeader): Future[Result] = {
+    Future.successful(NotFound {
+      val mode = Play.maybeApplication.map(_.mode).getOrElse(Mode.Dev)
+      mode match {
+        case Mode.Prod => view.html.not_found()
+        case _ => views.html.defaultpages.devNotFound.f(request, Play.maybeApplication.flatMap(_.routes))
+      }
+    })
   }
 }
