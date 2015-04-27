@@ -1,0 +1,24 @@
+@import io.johnmurray.docem.model.ProjectVersion
+@(project: String, shortName: String, versions: Map[String, ProjectVersion])
+
+@main("Doc'Em - " + project + " Versions") {
+    <h2>@project</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Version</th>
+                <th>Release Name</th>
+                <th>Release Date</th>
+            </tr>
+        </thead>
+        <tbody>
+        @versions.map { case (version: String, vInfo: ProjectVersion) =>
+            <tr>
+                <td><a href="/doc/@shortName/@version">@version</a></td>
+                <td>@vInfo.name</td>
+                <td>@vInfo.date.toString()</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}

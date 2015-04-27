@@ -16,9 +16,15 @@ class IndexController extends Controller {
   }
 
   def projectPage(project: String) = Action {
-    index.Cache.versions.get(project).map({vs =>
-      Ok("found it")
-    }).getOrElse(NotFound(view.html.not_found()))
+    (
+      for {
+        _project <- index.Cache.project.get(project)
+        versions <- index.Cache.versions.get(project)
+
+      } yield Ok(view.html.all_versions(_project.name, project, versions))
+    ).getOrElse {
+      NotFound(view.html.not_found())
+    }
   }
 
 }

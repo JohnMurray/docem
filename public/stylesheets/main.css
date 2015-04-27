@@ -1,6 +1,12 @@
 /*
  * Styles for main layout page
  */
+body {
+    padding-top: 50px;
+}
+.docem-template {
+    padding: 40px 15px;
+}
 
 
 /*
