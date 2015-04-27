@@ -37,3 +37,28 @@ docs spread out everywhere. While this can mean a lot of things, it mostly means
 your users will have a hard time remembering where to go for _your_ application's docs
 amongst all the others they are already using. This additional mental overhead can
 mean they'll just bug your team with more questions instead of referring to your docs.
+
+
+## Advantages Over Apache + FTP
+
+Being a server for hosting static content, you may wonder why not just use something like Apache
+or Nginx to serve your static content and use FTP to manage that content on the server. You
+could very well do this and be perfectly fine. Using this software, however, buys you
+the following advantages.
+
+### Immutable Versions / Version Locks
+
+TODO: Talk about version locking
+
+### Queryable API
+
+Todo: Talk about Project/Project-Version APIs
+
+### Documentation Search Application
+
+One thing that you will not get when using plain 'ole Apache and FTP is an application
+to search all available documentation. This application provides that functionality on
+the landing page showing the project's name, description, available versions, and a 
+search functionality ot filter what you are looking for. Having all of this certainly
+wins out over scanning through a "directory view" in Apache, trying to figure out where
+the project you are looking for is, or what a given project does.
