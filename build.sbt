@@ -14,6 +14,3 @@ libraryDependencies ++= Seq(
   "com.fasterxml.jackson.core"       % "jackson-databind"        % jacksonVersion,
   "com.fasterxml.jackson.dataformat" % "jackson-dataformat-yaml" % jacksonVersion
 )
-
-
-fork in run := true
