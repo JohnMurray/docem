@@ -24,20 +24,20 @@ object Global extends GlobalSettings {
 
     // some simple setup for testing
     import io.johnmurray.docem.index._
-    Cache.project += "test" -> model.Project("Test Project", "Some test project that does stuff", "test", "0.0.1")
+    Cache.project += "test" -> model.Project(1L, "Test Project", "Some test project that does stuff", "test", List(1L, 2L), 2L)
     Cache.versions += "test" -> Map(
-      "0.0.1" -> ProjectVersion("0.0.1", "Funky Walrus", DateTime.now()),
-      "0.0.0" -> ProjectVersion("0.0.0", "Overweight Chicken", DateTime.now().minusDays(2)))
+      "0.0.1" -> ProjectVersion(1L," 0.0.1", Some("Funky Walrus"), DateTime.now()),
+      "0.0.0" -> ProjectVersion(2L, "0.0.0", Some("Overweight Chicken"), DateTime.now().minusDays(2)))
 
-    Cache.project += "fg-framework" -> model.Project("Fireglass Framework",
+    Cache.project += "fg-framework" -> model.Project(2L, "Fireglass Framework",
       """
         |A simple framework built on top of Play for building web-services within AppNexus. The "framework"
         |is mainly a collection of libraries aimed toward building AppNexus web services easier by integrating
         |with core services and conforming to company standards.
-      """.stripMargin, "fg-framework", "0.0.30")
+      """.stripMargin, "fg-framework", List(3L, 4L), 4L)
     Cache.versions += "fg-framework" -> Map(
-      "0.0.30" -> ProjectVersion("0.0.30", "Time Traveling Ninja", DateTime.now),
-      "0.0.29" -> ProjectVersion("0.0.29", "Super Insedious", DateTime.now.minusDays(1)))
+      "0.0.30" -> ProjectVersion(3L, "0.0.30", Some("Time Traveling Ninja"), DateTime.now),
+      "0.0.29" -> ProjectVersion(4L, "0.0.29", Some("Super Insedious"), DateTime.now.minusDays(1)))
 
   }
 
