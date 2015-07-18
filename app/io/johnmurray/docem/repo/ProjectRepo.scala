@@ -7,13 +7,15 @@ import io.johnmurray.docem.model.{ProjectVersion, ProjectProfile, Project}
  */
 trait ProjectRepo {
 
-  def getAll(): List[(Project, ProjectProfile)]
+  def getAll(): List[(Project, Option[ProjectProfile])]
 
-  def get(id: Long): Option[(Project, ProjectProfile)]
+  def get(id: Long): Option[(Project, Option[ProjectProfile])]
 
-  def store(project: Project, projectProfile: ProjectProfile): Unit
+  def store(project: Project): Long
 
-  def edit(id: Long, project: Project, projectProfile: ProjectProfile): Unit
+  def store(projectProfile: ProjectProfile): Unit
+
+  def edit(id: Long, project: Project, projectProfile: Option[ProjectProfile]): Unit
 
   def delete(id: Long): Unit
 

@@ -24,12 +24,12 @@ object Global extends GlobalSettings {
 
     // some simple setup for testing
     import io.johnmurray.docem.index._
-    Cache.project += "test" -> model.Project(1L, "Test Project", "Some test project that does stuff", "test", List(1L, 2L), 2L)
+    Cache.project += "test" -> model.Project(Some(1L), "Test Project", "Some test project that does stuff", "test", List(1L, 2L), 2L)
     Cache.versions += "test" -> Map(
       "0.0.1" -> ProjectVersion(1L," 0.0.1", Some("Funky Walrus"), DateTime.now()),
       "0.0.0" -> ProjectVersion(2L, "0.0.0", Some("Overweight Chicken"), DateTime.now().minusDays(2)))
 
-    Cache.project += "fg-framework" -> model.Project(2L, "Fireglass Framework",
+    Cache.project += "fg-framework" -> model.Project(Some(2L), "Fireglass Framework",
       """
         |A simple framework built on top of Play for building web-services within AppNexus. The "framework"
         |is mainly a collection of libraries aimed toward building AppNexus web services easier by integrating

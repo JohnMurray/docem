@@ -2,6 +2,8 @@ name := """docem"""
 
 version := "1.0-SNAPSHOT"
 
+Revolver.settings
+
 lazy val root = (project in file(".")).enablePlugins(PlayScala)
 
 scalaVersion := "2.11.6"
@@ -14,3 +16,4 @@ libraryDependencies ++= Seq(
   "com.fasterxml.jackson.core"       % "jackson-databind"        % jacksonVersion,
   "com.fasterxml.jackson.dataformat" % "jackson-dataformat-yaml" % jacksonVersion
 )
+
