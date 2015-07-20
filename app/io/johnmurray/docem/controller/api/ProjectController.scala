@@ -1,18 +1,20 @@
 package io.johnmurray.docem.controller.api
 
 import io.johnmurray.docem.model.Project
-import io.johnmurray.docem.repo.memory.MemoryProjectRepo
-import io.johnmurray.docem.service.ProjectServiceImpl
+import io.johnmurray.docem.repo.ProjectRepo
+import io.johnmurray.docem.service.ProjectService
 import play.api.Logger
 import play.api.libs.json.{JsSuccess, Json}
 import play.api.mvc._
+import scaldi.{Injectable, Injector}
 
 /**
  * API endpoint for Projects
  */
-class ProjectController extends Controller {
+class ProjectController(implicit inj: Injector) extends Controller with Injectable {
 
-  import io.johnmurray.docem.controller.api.ProjectController._
+  val projectRepo = inject[ProjectRepo]
+  val service = inject [ProjectService]
 
   def getAllProjects = Action {
     Ok(Json.toJson(service.fetchAll))
@@ -38,7 +40,5 @@ class ProjectController extends Controller {
  */
 object ProjectController {
 
-  // todo: use DI
-  val service = new ProjectServiceImpl(new MemoryProjectRepo)
 
 }
