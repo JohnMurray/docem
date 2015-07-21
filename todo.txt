@@ -6,3 +6,6 @@ Milestone 1 - Data-Models + APIs
   [ ] Define API endpoints for all applicable models using services to contain
       business logic
   [ ] Remove all global state and use recommended Play 2.4 Practices
+
+
+Milestone 2 - TBD
