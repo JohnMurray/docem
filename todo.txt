@@ -1,0 +1,8 @@
+Milestone 1 - Data-Models + APIs
+
+  [x] Determine and use DI support
+  [~] Define object model that I'm happy with
+  [~] Define repositories to match the models
+  [ ] Define API endpoints for all applicable models using services to contain
+      business logic
+  [ ] Remove all global state and use recommended Play 2.4 Practices
