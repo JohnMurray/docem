@@ -32,13 +32,3 @@ class ProjectController(implicit inj: Injector) extends Controller with Injectab
   }
 
 }
-
-/**
- * ToDo: I would really like to inject these, but I need to figure out how to make them a singleton first since
- * I dont' want them created with each controller instance. Also probably need to make the controller a singleton
- * (maybe).
- */
-object ProjectController {
-
-
-}
