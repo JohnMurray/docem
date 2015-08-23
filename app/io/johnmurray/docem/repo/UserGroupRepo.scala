@@ -7,7 +7,7 @@ import io.johnmurray.docem.model.UserGroup
  */
 trait UserGroupRepo {
 
-  def getAll(): List[UserGroup]
+  def getAll: List[UserGroup]
 
   def get(id: Long): Option[UserGroup]
 

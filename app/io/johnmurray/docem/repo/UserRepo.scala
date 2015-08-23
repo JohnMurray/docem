@@ -7,7 +7,7 @@ import io.johnmurray.docem.model.{UserProfile, User}
  */
 trait UserRepo {
 
-  def getAll(): List[(User, UserProfile)]
+  def getAll: List[(User, UserProfile)]
 
   def get(id: Long): Option[(User, UserProfile)]
 

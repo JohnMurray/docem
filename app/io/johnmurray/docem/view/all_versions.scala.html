@@ -1,5 +1,4 @@
-@import io.johnmurray.docem.model.ProjectVersion
-@(project: String, shortName: String, versions: Map[String, ProjectVersion])
+@(project: String, shortName: String, versions: Map[String, io.johnmurray.docem.model.ProjectVersion])
 
 @main("Doc'Em - " + project + " Versions") {
     <h2>@project</h2>
@@ -12,7 +11,7 @@
             </tr>
         </thead>
         <tbody>
-        @versions.map { case (version: String, vInfo: ProjectVersion) =>
+        @versions.map { case (version, vInfo) =>
             <tr>
                 <td><a href="/doc/@shortName/@version">@version</a></td>
                 <td>@vInfo.name</td>

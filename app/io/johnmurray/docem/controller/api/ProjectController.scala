@@ -9,11 +9,11 @@ import play.api.mvc._
 import scaldi.{Injectable, Injector}
 
 /**
- * API endpoint for Projects
+ * API endpoint for managing Projects
  */
 class ProjectController(implicit inj: Injector) extends Controller with Injectable {
 
-  val projectRepo = inject[ProjectRepo]
+  //val projectRepo = inject[ProjectRepo]
   val service = inject [ProjectService]
 
   def getAllProjects = Action {
@@ -25,10 +25,31 @@ class ProjectController(implicit inj: Injector) extends Controller with Injectab
       case JsSuccess(project, _) =>
         val projectId = service.create(project)
         Ok(Json.obj("id" -> projectId))
-      case x =>
-        Logger.debug(x.toString)
-        BadRequest(Json.obj("error" -> "Could not parse the request"))
+      case error =>
+        Logger.debug(error.toString)
+        BadRequest(Json.obj("error" -> "Could not parse the request. Please provide all required fields."))
     }
+  }
+
+
+  def editProject(id: Long) = Action(parse.tolerantJson) { request =>
+    request.body.validate[Project] match {
+      case JsSuccess(project, _) =>
+        service.edit(id, project)
+        service.fetch(id) match {
+          case Some(p) => Ok(Json.toJson(p))
+          case _       => BadRequest(Json.obj("error" -> s"Could not find project by id '$id' to update"))
+        }
+      case error =>
+        Logger.debug(error.toString)
+        BadRequest(Json.obj("error" -> "Could not parse the request. Please provide all required fields."))
+    }
+  }
+
+
+  def deleteProject(id: Long) = Action {
+    service.delete(id)
+    Ok("")
   }
 
 }

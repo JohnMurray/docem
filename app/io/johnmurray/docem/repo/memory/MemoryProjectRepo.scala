@@ -1,8 +1,7 @@
 package io.johnmurray.docem.repo.memory
 
-import io.johnmurray.docem.model.{ProjectVersion, Project, ProjectProfile}
+import io.johnmurray.docem.model.{ProjectVersion, Project}
 import io.johnmurray.docem.repo.ProjectRepo
-import scala.collection.breakOut
 
 /**
  * An implementation of the project repository, but in memory. This is useful for testing or working in
@@ -17,16 +16,11 @@ class MemoryProjectRepo extends ProjectRepo {
   }
 
   var projectMemoryDb = Map.empty[Long, Project]
-  var profileMemoryDb = Map.empty[Long, ProjectProfile]
   var versionMemoryDb = Map.empty[Long, ProjectVersion]
 
-  override def getAll(): List[(Project, Option[ProjectProfile])] = {
-    projectMemoryDb.values.map(v => (v, v.id.flatMap(profileMemoryDb.get)))(breakOut)
-  }
+  override def getAll: List[Project] = projectMemoryDb.values.toList
 
-  override def get(id: Long) = {
-    projectMemoryDb.get(id).map(p => p -> profileMemoryDb.get(p.id.get))
-  }
+  override def get(id: Long): Option[Project] = projectMemoryDb.get(id)
 
   override def store(project: Project): Long = {
     val id = nextId
@@ -35,14 +29,7 @@ class MemoryProjectRepo extends ProjectRepo {
     id
   }
 
-  override def store(projectProfile: ProjectProfile): Unit = {
-    profileMemoryDb += projectProfile.projectId -> projectProfile
-  }
-
-  override def edit(id: Long, project: Project, projectProfile: Option[ProjectProfile]) = {
-    projectMemoryDb += id -> project
-    projectProfile.foreach(p => profileMemoryDb += p.projectId -> p)
-  }
+  override def edit(id: Long, project: Project) = projectMemoryDb += id -> project
 
   override def delete(id: Long): Unit = projectMemoryDb -= id
   
@@ -56,4 +43,8 @@ class MemoryProjectRepo extends ProjectRepo {
   override def deleteVersion(id: Long) = versionMemoryDb -= id
 
   override def getVersion(id: Long): Option[ProjectVersion] = versionMemoryDb.get(id)
+
+  override def getVersionsForProject(projectId: Long): List[ProjectVersion] = {
+    versionMemoryDb.values.filter(_.projectId == projectId).toList
+  }
 }

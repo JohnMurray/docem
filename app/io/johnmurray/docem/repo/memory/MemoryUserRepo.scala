@@ -11,7 +11,7 @@ class MemoryUserRepo extends UserRepo {
 
   var memoryDb = Map.empty[Long, (User, UserProfile)]
 
-  override def getAll(): List[(User, UserProfile)] = memoryDb.values.toList
+  override def getAll: List[(User, UserProfile)] = memoryDb.values.toList
 
   override def get(id: Long) = memoryDb.get(id)
 

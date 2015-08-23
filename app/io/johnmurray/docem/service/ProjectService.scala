@@ -1,6 +1,6 @@
 package io.johnmurray.docem.service
 
-import io.johnmurray.docem.model.Project
+import io.johnmurray.docem.model.{ProjectVersion, Project}
 import io.johnmurray.docem.repo.ProjectRepo
 
 /**
@@ -12,6 +12,14 @@ trait ProjectService {
 
   def fetchAll: Seq[Project]
 
+  def fetch(projectId: Long): Option[Project]
+
   def create(project: Project): Long
+
+  def edit(id: Long, project: Project): Unit
+
+  def fetchAllVersions(projectId: Long): Seq[ProjectVersion]
+
+  def delete(projectId: Long): Unit
 
 }
